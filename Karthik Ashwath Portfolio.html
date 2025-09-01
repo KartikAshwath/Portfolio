@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karthik Ashwath Portfolio</title>
+    <!-- Load Tailwind CSS from CDN for all styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load the Inter font for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Day/Night Mode */
+        :root {
+            --bg-color: #F8FAFC;
+            --text-color: #4A5568;
+            --card-bg: #FFFFFF;
+            --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            --skill-tag-bg: #E2E8F0;
+            --skill-tag-color: #4A5568;
+            --header-bg: linear-gradient(to right, #3B82F6, #6366F1); /* blue-500 to indigo-500 */
+            --link-color: #3B82F6; /* blue-500 */
+            --header-text-color: #FFFFFF;
+            --nav-bg: #1F2937;
+            --nav-text: #E5E7EB;
+        }
+
+        .dark-mode {
+            --bg-color: #1A202C;
+            --text-color: #E2E8F0;
+            --card-bg: #2D3748;
+            --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            --skill-tag-bg: #4A5568;
+            --skill-tag-color: #A0AEC0;
+            --header-bg: #1A202C;
+            --link-color: #6366F1; /* indigo-500 */
+            --header-text-color: #E2E8F0;
+            --nav-bg: #1F2937;
+            --nav-text: #E5E7EB;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .section {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .skill-tag {
+            background-color: var(--skill-tag-bg);
+            color: var(--skill-tag-color);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px; /* Pill shape */
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .header-bg {
+            background: var(--header-bg);
+            transition: background 0.3s;
+        }
+        a {
+            color: var(--link-color);
+        }
+
+        .nav-link {
+            color: var(--nav-text);
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .nav-link:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        /* Adjust padding for sticky header to not hide section titles */
+        .section-padding {
+            padding-top: 5rem;
+            margin-top: -5rem;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-10">
+
+    <div class="container mx-auto">
+        <!-- NAVIGATION BAR -->
+        <nav class="sticky top-0 z-10 bg-slate-800 bg-opacity-90 backdrop-blur-sm shadow-md p-4 rounded-lg flex flex-wrap justify-center space-x-2 md:space-x-4 mb-6">
+            <a href="#about" class="nav-link text-sm md:text-base">About Me</a>
+            <a href="#skills" class="nav-link text-sm md:text-base">Technical Skills</a>
+            <a href="#projects" class="nav-link text-sm md:text-base">Projects</a>
+            <a href="#education" class="nav-link text-sm md:text-base">Education</a>
+            <a href="#certifications" class="nav-link text-sm md:text-base">Certifications</a>
+            <a href="#soft-skills" class="nav-link text-sm md:text-base">Soft Skills</a>
+            <a href="#contact" class="nav-link text-sm md:text-base">Contact Info</a>
+        </nav>
+
+        <!-- HEADER SECTION -->
+        <header class="relative flex flex-col md:flex-row items-center justify-center text-center md:text-left mb-10 p-6 md:p-8 rounded-xl header-bg text-white shadow-lg">
+            
+            <!-- Day/Night Mode Toggle Button -->
+            <button id="theme-toggle" class="absolute top-4 right-4 p-2 rounded-full hover:bg-white hover:bg-opacity-20 transition-colors duration-300">
+                <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.364l-1.554 1.554M21 12h-2.25m-.364 6.364l-1.554-1.554M12 18.75V21m-6.364-.364l1.554-1.554M3 12H5.25m.364-6.364l1.554 1.554M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <svg id="moon-icon" class="w-6 h-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.752 9.752 0 0118 19.5a9.752 9.752 0 01-4.752-4.502M18 19.5V21.75m0-2.25a9.752 9.752 0 00-.75 0" />
+                </svg>
+            </button>
+            
+            <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8 w-full">
+                <!-- Profile Image -->
+                <div class="flex-shrink-0">
+                    <img src="https://raw.githubusercontent.com/KartikAshwath/Karthik-Ashwath/main/Portfolio/WhatsApp%20Image%202025-08-27%20at%2012.39.42%20PM.jpeg" alt="Karthik A Profile Picture" class="w-40 h-40 md:w-56 md:h-56 rounded-full border-4 border-white shadow-lg">
+                </div>
+                <!-- Name and Title -->
+                <div class="mt-4 md:mt-0 text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white">Karthik A</h1>
+                    <p class="text-xl mt-2 text-white">Data-driven Computer Science Engineering graduate</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- SUMMARY SECTION -->
+        <div id="about" class="section-padding"></div>
+        <section class="section">
+            <h2 class="text-3xl font-bold mb-4">Summary</h2>
+            <p class="leading-relaxed">
+                Data-driven Computer Science Engineering graduate with hands-on experience in data analysis, machine learning, and business intelligence. Proficient in Python (Pandas, NumPy, Matplotlib and Seaborn), SQL, Big Query, Power BI, Google Colab and Jupyter Notebook for building analytical pipelines and visual dashboards. Experienced in end-to-end data projects-from data wrangling to supervised and unsupervised ML model building. Skilled at translating complex data into actionable insights to support strategic business decisions.
+            </p>
+        </section>
+
+        <!-- TECHNICAL QUALIFICATIONS SECTION -->
+        <div id="skills" class="section-padding"></div>
+        <section class="section">
+            <h2 class="text-3xl font-bold mb-4">Technical Qualifications</h2>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-semibold text-lg mb-2">Languages</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Python (Pandas, NumPy, Matplotlib, Seaborn, SciPy)</span>
+                        <span class="skill-tag">SQL (Advanced Queries, Joins, CTES, Window Functions)</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-2">Data Tools</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">PySpark</span>
+                        <span class="skill-tag">Jupyter Notebook</span>
+                        <span class="skill-tag">MS Excel</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-2">ML Techniques</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Regression (Linear, Polynomial)</span>
+                        <span class="skill-tag">Classification (Logistic, KNN, SVM, Naïve Bayes, Decision Tree)</span>
+                        <span class="skill-tag">Clustering (K-Means, DBSCAN, PCA)</span>
+                        <span class="skill-tag">Model Evaluation</span>
+                        <span class="skill-tag">Sentiment Analysis</span>
+                        <span class="skill-tag">Topic Modelling</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-2">ML Frameworks</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Sci-kit Learn</span>
+                        <span class="skill-tag">Tensorflow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">MAXNet</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-2">Data Lifecycle Skills</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Data Cleaning</span>
+                        <span class="skill-tag">Feature Engineering</span>
+                        <span class="skill-tag">EDA</span>
+                        <span class="skill-tag">Dashboard Development</span>
+                        <span class="skill-tag">Data Storytelling</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-2">Cloud</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag">Google Cloud</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <div id="projects" class="section-padding"></div>
+        <section class="section">
+            <h2 class="text-3xl font-bold mb-4">Featured Projects</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Project 1 -->
+                <div class="bg-slate-800 p-6 rounded-lg dark:bg-gray-900">
+                    <h3 class="text-xl font-extrabold mb-2 text-white">1️⃣ Retail Sales Insights Dashboard</h3>
+                    <p class="text-sm text-gray-400 mb-2 dark:text-gray-400">📌 *Python, Excel, Power BI*</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-1 dark:text-gray-300">
+                        <li>Built an end-to-end sales analytics pipeline (data cleaning, EDA, dashboard).</li>
+                        <li>Created interactive Power BI dashboards to track revenue, top products, and sales by region.</li>
+                    </ul>
+                    <a href="#" class="font-medium mt-2 block">View Project ↗</a>
+                </div>
+                <!-- Project 2 -->
+                <div class="bg-slate-800 p-6 rounded-lg dark:bg-gray-900">
+                    <h3 class="text-xl font-extrabold mb-2 text-white">2️⃣ Job Market Analytics</h3>
+                    <p class="text-sm text-gray-400 mb-2 dark:text-gray-400">📌 *Python, MySQL, Power BI*</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-1 dark:text-gray-300">
+                        <li>Scraped and analyzed job postings for Data Analyst roles.</li>
+                        <li>Extracted insights: top cities, skills in demand, salary ranges, and monthly trends.</li>
+                        <li>Built an interactive Power BI dashboard with 4 pages (Overview, Skills, Salary, Locations).</li>
+                    </ul>
+                    <a href="#" class="font-medium mt-2 block">View Project ↗</a>
+                </div>
+                 <!-- Project 3 -->
+                <div class="bg-slate-800 p-6 rounded-lg dark:bg-gray-900">
+                    <h3 class="text-xl font-extrabold mb-2 text-white">3️⃣ British Airways Review & Booking Analysis</h3>
+                    <p class="text-sm text-gray-400 mb-2 dark:text-gray-400">📌 *Python, NLP, ML, Visualization*</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-1 dark:text-gray-300">
+                        <li>Conducted sentiment analysis & topic modeling on customer reviews.</li>
+                        <li>Identified booking behavior patterns and presented insights with PowerPoint storytelling.</li>
+                    </ul>
+                    <a href="#" class="font-medium mt-2 block">View Project ↗</a>
+                </div>
+                <!-- Project 4 -->
+                <div class="bg-slate-800 p-6 rounded-lg dark:bg-gray-900">
+                    <h3 class="text-xl font-extrabold mb-2 text-white">4️⃣ Object Detection & Distance Measurement for Visually Impaired</h3>
+                    <p class="text-sm text-gray-400 mb-2 dark:text-gray-400">📌 *Computer Vision, ML*</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-1 dark:text-gray-300">
+                        <li>Designed an assistive vision system with 3D audio feedback.</li>
+                        <li>Enabled intuitive navigation by translating distance and object detection into sound intensity.</li>
+                    </ul>
+                    <a href="#" class="font-medium mt-2 block">View Project ↗</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <div id="education" class="section-padding"></div>
+        <section class="section">
+            <h2 class="text-3xl font-bold mb-4">Education</h2>
+            <ul class="space-y-4">
+                <li>
+                    <p class="text-lg font-semibold">B.E - Computer Science & Engineering</p>
+                    <p>Mangalore Institute of Technology & Engineering</p>
+                    <p class="text-sm">2020 - 2024 | CGPA: 7.81</p>
+                </li>
+                <li>
+                    <p class="text-lg font-semibold">Senior Secondary (12th)</p>
+                    <p>DVS Pre-University College, Shimoga</p>
+                    <p class="text-sm">2018 - 2020 | 84.66%</p>
+                </li>
+                <li>
+                    <p class="text-lg font-semibold">Secondary School (SSLC)</p>
+                    <p>National High School, B.R.Project</p>
+                    <p class="text-sm">2017 - 2018 | 91.52%</p>
+                </li>
+            </ul>
+        </section>
+        
+        <!-- CERTIFICATIONS SECTION -->
+        <div id="certifications" class="section-padding"></div>
+        <section class="section">
+            <h2 class="text-3xl font-bold mb-4">Certifications</h2>
+            <ul class="space-y-4">
+                <li>
+                    <p class="text-lg font-semibold">Crash Course on Python</p>
+                    <p>Google (Coursera)</p>
+                </li>
+                <li>
+                    <p class="text-lg font-semibold">Intro to Machine Learning</p>
+                    <p>Infosys Springboard</p>
+                </li>
+                 <li>
+                    <p class="text-lg font-semibold">BigQuery for Data Analysts</p>
+                    <p>Google Cloud (in progress)</p>
+                </li>
+                 <li>
+                    <p class="text-lg font-semibold">Prompt Engineering with OpenAI</p>
+                    <p>Columbia University (in progress)</p>
+                </li>
+            </ul>
+        </section>
+        
+        <!-- SOFT SKILLS SECTION -->
+        <div id="soft-skills" class="section-padding"></div>
+        <section class="section">
+            <h2 class="text-3xl font-bold mb-4">Soft Skills</h2>
+            <ul class="space-y-2 list-disc list-inside">
+                <li>Communication & Interpersonal Skills</li>
+                <li>Analytical & Problem-Solving Mindset</li>
+                <li>Adaptability & Continuous Learning</li>
+                <li>Collaborative Team Player</li>
+            </ul>
+        </section>
+        
+        <!-- CONTACT SECTION -->
+        <div id="contact" class="section-padding"></div>
+        <section class="section">
+            <h2 class="text-3xl font-bold mb-4">📬 Contact</h2>
+            <div class="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-4 text-lg">
+                <p>
+                    <span class="font-semibold">📧 Email:</span>
+                    <a href="mailto:kartikashwath@gmail.com" class="hover:underline">kartikashwath@gmail.com</a>
+                </p>
+                <p>
+                    <span class="font-semibold">🔗</span>
+                    <a href="https://www.linkedin.com/in/karthik-a-393533226" target="_blank" rel="noopener noreferrer" class="hover:underline">LinkedIn</a>
+                    <span class="px-1">|</span>
+                    <a href="https://www.github.com/in/Karthik1-A" target="_blank" rel="noopener noreferrer" class="hover:underline">GitHub</a>
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="text-center text-sm mt-10">
+        <p>&copy; 2025 Karthik A. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+
+            // Function to set the theme
+            function setTheme(theme) {
+                if (theme === 'dark') {
+                    body.classList.add('dark-mode');
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                } else {
+                    body.classList.remove('dark-mode');
+                    sunIcon.classList.remove('hidden');
+                    moonIcon.classList.add('hidden');
+                }
+                localStorage.setItem('theme', theme);
+            }
+
+            // Check for saved theme preference or default to light
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            setTheme(savedTheme);
+
+            // Toggle theme on button click
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+                setTheme(currentTheme);
+            });
+        });
+    </script>
+</body>
+</html>
